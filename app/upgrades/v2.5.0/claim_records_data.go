@@ -7,14 +7,14 @@ import (
 
 var NewClaimRecords = []*claimtypes.ClaimRecord{
 	{
-		Address: "pasg1lvxw50vdlyncstwnm89r2lep0u0n0yvaww6reu",
+		Address: "pasg1uagfzffdm9wm9ecqx50eltpdtg6ng22sslslg5",
 		ClaimableAmount: types.NewCoins(
 			types.NewCoin("upasg", types.NewInt(4662000000)),
 		),
 		ActionCompleted: []bool{false},
 	},
 	{
-		Address: "pasg18zzevw75ysd50gyu3fyx5kmqph4yam2uhujdqt",
+		Address: "pasg19y6ujy25d7tkzulxdjk53lwmec2rcghhw42nh3",
 		ClaimableAmount: types.NewCoins(
 			types.NewCoin("upasg", types.NewInt(4662000000)),
 		),
