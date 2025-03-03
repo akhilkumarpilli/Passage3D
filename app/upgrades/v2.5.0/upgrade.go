@@ -61,17 +61,24 @@ func ExecuteProposal(ctx sdk.Context, ak auth.AccountKeeper, bk bank.Keeper, ck 
 	}
 	ctx.Logger().Info(fmt.Sprintf("added new claim records: %d", len(NewClaimRecords)))
 
-	// get airdrop account
-	airdropAccAddr, err := sdk.AccAddressFromBech32("pasg1lel0s624jr9zsz4ml6yv9e5r4uzukfs7hwh22w")
+	// only for TESTING: minting tokens directly instead of sending from airdrop account
+	err := bk.MintCoins(ctx, claimtypes.ModuleName, amount)
 	if err != nil {
 		return err
 	}
+	ctx.Logger().Info(fmt.Sprintf("mint tokens: %s in claim module account", amount.String()))
 
-	// send the added balances from airdrop account to claim module account
-	if err := bk.SendCoinsFromAccountToModule(ctx, airdropAccAddr, claimtypes.ModuleName, amount); err != nil {
-		return err
-	}
-	ctx.Logger().Info(fmt.Sprintf("sent coins: %s from airdrop account to claim module account", amount.String()))
+	// // get airdrop account
+	// airdropAccAddr, err := sdk.AccAddressFromBech32("pasg1lel0s624jr9zsz4ml6yv9e5r4uzukfs7hwh22w")
+	// if err != nil {
+	// 	return err
+	// }
+
+	// // send the added balances from airdrop account to claim module account
+	// if err := bk.SendCoinsFromAccountToModule(ctx, airdropAccAddr, claimtypes.ModuleName, amount); err != nil {
+	// 	return err
+	// }
+	// ctx.Logger().Info(fmt.Sprintf("sent coins: %s from airdrop account to claim module account", amount.String()))
 
 	params := ck.GetParams(ctx)
 	params.AirdropEnabled = true
