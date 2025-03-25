@@ -35,7 +35,7 @@ func CreateUpgradeHandler(
 	mm *module.Manager,
 	configurator module.Configurator,
 	appCodec codec.Codec,
-	_ distribution.Keeper,
+	dk distribution.Keeper,
 	bk bank.Keeper,
 	ak auth.AccountKeeper,
 	sk staking.Keeper,
@@ -50,7 +50,7 @@ func CreateUpgradeHandler(
 		}
 
 		// migrate multisig addresses
-		if err := MigrateMultisigAddresses(ctx, appCodec, AddressMigrations, bk, ak, sk, gk,
+		if err := MigrateMultisigAddresses(ctx, appCodec, AddressMigrations, dk, bk, ak, sk, gk,
 			azk, fk, ck); err != nil {
 			return nil, err
 		}

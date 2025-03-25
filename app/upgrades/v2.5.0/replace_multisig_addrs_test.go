@@ -234,6 +234,7 @@ func (s *UpgradeTestSuite) TestMigrateMultisigAddresses() {
 		s.ctx,
 		s.app.AppCodec(),
 		s.migrations,
+		s.app.DistrKeeper,
 		s.app.BankKeeper,
 		s.app.AccountKeeper,
 		s.app.StakingKeeper,
